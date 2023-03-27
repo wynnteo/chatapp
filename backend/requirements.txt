@@ -1,0 +1,5 @@
+channels==3.0.4
+Django==3.2.6
+django-cors-headers==3.14.0
+djangorestframework==3.12.4
+psycopg2==2.9.3

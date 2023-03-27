@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    entrypoint: /bin/bash
+    command: -c "./entrypoint.sh && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DEBUG=True
+      #- REDIS_HOST=redis
+      - POSTGRES_DB=chat
+      - POSTGRES_USER=chat
+      - POSTGRES_PASSWORD=chat123
+      - POSTGRES_HOST=db
+    depends_on:
+      #- redis
+      - db
+    volumes:
+      - .:/backend
+    ports:
+      - "8000:8000"
+
+  # redis:
+  #   image: redis:latest
+  #   hostname: redis
+  #   volumes:
+  #     - redis_data:/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      - REACT_APP_WS_URL=ws://localhost:8000/ws/chat/
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+      #- "443:443"
+    depends_on:
+      - backend
+      - frontend
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=chat
+      - POSTGRES_USER=chat
+      - POSTGRES_PASSWORD=chat123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  # redis_data:
+  postgres_data:

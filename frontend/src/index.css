@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.chat-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 400px;
+  width: 80%;
+  border: 1px solid black;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.message-username {
+  font-weight: bold;
+}
+
+.message-content {
+  margin-left: 10px;
+}
+
+.message-timestamp {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  height: 40px;
+    width: 400px;
+    margin-right: 10px;
+    padding: 0 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+  height: 40px;
+  width: 20%;
+  font-weight: bold;
+  background-color: #2e87d4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
